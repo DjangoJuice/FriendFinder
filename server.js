@@ -2,7 +2,6 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var path = require("path");
 
 // Sets up the Express App
 // =============================================================
@@ -13,6 +12,10 @@ var PORT = process.env.port || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
+
+require("./app/routing/apiRoutes.js")(app);
+require("./app/routing/htmlRoutes.js")(app);
 
   
   // Displays all characters

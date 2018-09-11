@@ -59,7 +59,7 @@
 
 
     <h3><strong>Question 3</strong></h3>
-    <h4>If you see a bear, you get fiercely aggressive and want to attack it.</h4>
+    <h4>If you see a bear, you get fiercely aggressive and imagine attacking it.</h4>
     <select class="chosen-select" id="q3">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -187,6 +187,52 @@
 
     </div>
   </div>
+  
+<script type="text/javascript">
+
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
+
+    //
+    var newFriendData = {
+      name: $("#name").val().trim(),
+      photo: $("#photo").val().trim(),
+      q1: $("#q1").val().trim(),
+      q2: $("#q2").val().trim(),
+      q3: $("#q3").val().trim(),
+      q4: $("#q4").val().trim(),
+      q5: $("#q5").val().trim(),
+      q6: $("#q6").val().trim(),
+      q7: $("#q7").val().trim(),
+      q8: $("#q8").val().trim(),
+      q9: $("#q9").val().trim(),
+      q10: $("#q10").val().trim(),
+    }
+  });
+
+   $.post("/api/friends", newFriendData,
+    
+    function(data) {
+      if (data) {
+          console.log("New data sent");
+      }
+      else {
+          console.log("NO data was sent");
+      };
+
+      $("#q1").val("");
+      $("#q2").val("");
+      $("#q3").val("");
+      $("#q4").val("");
+      $("#q5").val("");
+      $("#q6").val("");
+      $("#q7").val("");
+      $("#q8").val("");
+      $("#q9").val("");
+      $("#q10").val("");
+    });
+
+  </script>
 
   </body>
   </html>
