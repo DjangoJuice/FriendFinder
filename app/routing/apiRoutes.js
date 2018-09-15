@@ -1,4 +1,8 @@
+
+
+
 var path = require("path");
+var friendsArray = require("../data/friends");
 
 
 // Routes
@@ -8,10 +12,13 @@ var path = require("path");
 module.exports = function(app) {
 
 app.get("/api/friends", function(req, res) {
-    res.sendFile(path.join(__dirname, "../data/friends.js"));
+    res.json(require("../data/friends"));
+    //res.json(path.join(__dirname, "../data/friends.js"));
   });
   
 app.post("/api/friends", function(req, res) {
-    res.sendFile(path.join(__dirname, "../data/friends.js"));
+    friendsArray.push(req.body);
+    res.json(true);
+    //res.json(require(path.join(__dirname, "../data/friends.js")));
   });
 };

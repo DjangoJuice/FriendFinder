@@ -14,29 +14,9 @@ app.use(bodyParser.json());
 
 
 
-require("./app/routing/apiRoutes.js")(app);
-require("./app/routing/htmlRoutes.js")(app);
+require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
-  
-  // Displays all characters
-//   app.get("/api/characters", function(req, res) {
-//     return res.json(characters);
-//   });
-  
-  // Displays a single character, or returns false
-//   app.get("/api/characters/:character", function(req, res) {
-//     var chosen = req.params.character;
-
-//     console.log(chosen);
-
-//     for (var i = 0; i < characters.length; i++) {
-//       if (chosen === characters[i].routeName) {
-//         return res.json(characters[i]);
-//       }
-//     }
-  
-//     return res.json(false);
-//   });
 
 // Starts the server to begin listening
 // =============================================================

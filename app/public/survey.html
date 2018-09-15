@@ -193,6 +193,7 @@
   $("#submit").on("click", function(event) {
     event.preventDefault();
 
+    console.log("clicked");
     //
     var newFriendData = {
       name: $("#name").val().trim(),
@@ -207,31 +208,34 @@
       q8: $("#q8").val().trim(),
       q9: $("#q9").val().trim(),
       q10: $("#q10").val().trim(),
+    };
+
+console.log("1 ", newFriendData);
+//console.log("2 ", JSON.stringify(newFriendData));
+
+   $.post("/api/friends", newFriendData, 
+  
+  function() {
+    if(true) {
+      console.log("Boom")
     }
+    else {console.log("Not boom")}
   });
-
-   $.post("/api/friends", newFriendData,
     
-    function(data) {
-      if (data) {
-          console.log("New data sent");
-      }
-      else {
-          console.log("NO data was sent");
-      };
+    
 
-      $("#q1").val("");
-      $("#q2").val("");
-      $("#q3").val("");
-      $("#q4").val("");
-      $("#q5").val("");
-      $("#q6").val("");
-      $("#q7").val("");
-      $("#q8").val("");
-      $("#q9").val("");
-      $("#q10").val("");
-    });
+      // $("#q1").val("");
+      // $("#q2").val("");
+      // $("#q3").val("");
+      // $("#q4").val("");
+      // $("#q5").val("");
+      // $("#q6").val("");
+      // $("#q7").val("");
+      // $("#q8").val("");
+      // $("#q9").val("");
+      // $("#q10").val("");
 
+  });
   </script>
 
   </body>
