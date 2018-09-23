@@ -6,16 +6,28 @@
   <title>FriendFinder</title>
 
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link 
+    rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script 
+    src="https://code.jquery.com/jquery.js"></script>
+
+  <script 
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
   <!-- Font Awesome Glyphicons -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link 
+    rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
   <!-- Chosen -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+
+  <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
 </head>
 
@@ -156,11 +168,12 @@
     <!-- Submit Button -->
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
      Submit</button>
+     
 
     <hr>
     <footer class="footer">
       <div class="container">
-        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/DjangoJuice/FriendFinder">GitHub Repo</a></p>
       </div>
     </footer>
 
@@ -178,7 +191,7 @@
         </div>
         <div class="modal-body">
           <h2 id="match-name"></h2>
-          <img id="match-img" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+          <img id="match-img" alt="" width="250px" height="250px">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -190,11 +203,12 @@
   
 <script type="text/javascript">
 
+  // Once the user clicks "Submit", they should receive a model that displays their match
   $("#submit").on("click", function(event) {
     event.preventDefault();
 
-    console.log("clicked");
-    //
+  // This should just store the results of the user's survey questions into object
+  // Going to be sent in ajax post
     var newFriendData = {
       name: $("#name").val().trim(),
       photo: $("#photo").val().trim(),
@@ -210,33 +224,32 @@
       $("#q10").val().trim()]
     };
 
-console.log("1 ", newFriendData);
-//console.log("2 ", JSON.stringify(newFriendData));
-
+    // The Submit Button needs to send the Ajax Post to analyze the data
    $.post("/api/friends", newFriendData).then(function(result){
-      console.log(result, "--------- this is the match --------------");
-   });
-  
-  // function(data) {
-  //   console.log(data);
-    // if(true) {
-    //   console.log("Boom")
-    // }
-    // else {console.log("Not boom")}
-  //});
-    
-    
+      
+    // Displays the name of the matched person in modal
+      $("#match-name").text(result.name);
 
-      // $("#q1").val("");
-      // $("#q2").val("");
-      // $("#q3").val("");
-      // $("#q4").val("");
-      // $("#q5").val("");
-      // $("#q6").val("");
-      // $("#q7").val("");
-      // $("#q8").val("");
-      // $("#q9").val("");
-      // $("#q10").val("");
+    // Displays the photo of the matched person in modal
+      $("#match-img").attr("src", result.photo);
+
+    // Activates the display of the modal
+      $("#results-modal").modal("toggle");
+   });
+
+    // Empty the Survey Fields for the next possible survey
+      $("#name").val("");
+      $("#photo").val("");
+      $("#q1").val("");
+      $("#q2").val("");
+      $("#q3").val("");
+      $("#q4").val("");
+      $("#q5").val("");
+      $("#q6").val("");
+      $("#q7").val("");
+      $("#q8").val("");
+      $("#q9").val("");
+      $("#q10").val("");
 
   });
   </script>

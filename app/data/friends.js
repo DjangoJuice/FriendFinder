@@ -2,7 +2,7 @@ var friendsArray = [
     
     {
         "name":"Ahmed",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "photo":"http://imgs.tuts.dragoart.com/how-to-draw-gangster-spongebob_1_000000007012_5.jpg",
         "scores":[
             5,
             1,
@@ -18,7 +18,7 @@ var friendsArray = [
       },
       {
         "name":"Bob",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "photo":"http://imgs.tuts.dragoart.com/how-to-draw-gangster-spongebob_1_000000007012_5.jpg",
         "scores":[
             4,
             1,
@@ -34,7 +34,7 @@ var friendsArray = [
       },
       {
         "name":"Sally",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "photo":"http://imgs.tuts.dragoart.com/how-to-draw-gangster-spongebob_1_000000007012_5.jpg",
         "scores":[
             2,
             1,
@@ -50,7 +50,7 @@ var friendsArray = [
       },
       {
         "name":"Alvaro",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "photo":"http://imgs.tuts.dragoart.com/how-to-draw-gangster-spongebob_1_000000007012_5.jpg",
         "scores":[
             3,
             3,

@@ -1,10 +1,7 @@
+// Require values
+  var path = require("path");
+  var friendsArray = require("../data/friends");
 
-
-
-var path = require("path");
-var friendsArray = require("../data/friends");
-
-//console.log(friendsArray[0].q1);
 
 // Routes
 // =============================================================
@@ -12,52 +9,47 @@ var friendsArray = require("../data/friends");
 
 module.exports = function(app) {
 
+// Retrieves all the data about friends that will be compared and analyzed
 app.get("/api/friends", function(req, res) {
     res.json(require("../data/friends"));
   });
   
+// Actually performing the match comparison and storing data in FriendsArray
 app.post("/api/friends", function(req, res) {
-    //friendsArray.push(req.body);\
 
+  // New survey results should be stored here
+    friendsArray.push(req.body);
+
+  // Storing the newest survey reults for comparison and analyses
     var newFriend = req.body;
   
-
+  // Function to retrieve the best match for the user based upon data in newFriend
      findBestMatch(newFriend, function(matchData){
       res.json(matchData);
      })
-    
-    // for (var friend in friendsArray) {
-    //   res.json(req.body.q1 - friendsArray[friend].q1)
-    // }
-
-    //Find the best match here from friendsArray
-    // for (var friend in friendsArray) {
-    //   for (i=0; i < 9; i++) {
-    //   (friendsArray[friend].qi - req.body.qi)
-    //   }
-    // }
-
-  
-
-    //res.json(friendsArray[0]);
   });
 };
 
+// This function actually performs the comparison and decides best match based on bestMatchDifference
 function findBestMatch(newFriend, callback) {
 
+  // Will need to store the results here
   var bestMatch;
   var bestMatchDifference;
 
+  // Compares the user's survey results against each record in FriendsArray
   friendsArray.forEach(ele => {
       var totalDifference = 0;
      
+      // Takes the scores in each array from each record in FriendsArray
+      // to find the difference and totalDifference will be used to calculate best match
       ele.scores.forEach((e, i)=> {
         var scoreDifference = e - newFriend.scores[i];
         totalDifference += Math.abs(scoreDifference);
       });
 
      
-
+      // Need to determine best match based on comparisons
       if( bestMatchDifference ) {
           if(totalDifference < bestMatchDifference) {
             bestMatchDifference = totalDifference;
@@ -68,12 +60,10 @@ function findBestMatch(newFriend, callback) {
         bestMatch = ele;
       }
 
-      console.log("This is the total difference " +totalDifference + "for " + ele.name );
 
   });
 
-  console.log("This is the best match " + bestMatch.name + "And this is the total difference " + bestMatchDifference);
-
+  // Sends the best match results to the DOM
   callback(bestMatch);
 
 }
