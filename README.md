@@ -1,2 +1,2 @@
 # FriendFinder
-Dating Application [Full Stack with Express]
+Friend Matching Application [Full Stack with Express]
